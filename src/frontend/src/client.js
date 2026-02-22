@@ -1,4 +1,4 @@
-import fetch from 'unfetch'
+import fetch from 'unfetch';
 
 const checkStatus = response => {
     if (response.ok) {
@@ -22,4 +22,9 @@ export const addNewStudent = student =>
             method: 'POST',
             body: JSON.stringify(student)
         }
-    );
+    ).then(checkStatus)
+
+export const deleteStudent = studentId =>
+    fetch(`api/v1/students/${studentId}`, {
+        method: 'DELETE'
+    }).then(checkStatus);
