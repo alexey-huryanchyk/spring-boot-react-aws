@@ -1,6 +1,7 @@
 package com.ovsyanka.springbootreactaws.student;
 
 import com.ovsyanka.springbootreactaws.StudentService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +20,13 @@ public class StudentController {
     }
 
     @PostMapping
-    public void addStudent(@RequestBody Student student) {
+    public void addStudent(@Valid @RequestBody Student student) {
         studentService.addStudent(student);
     }
 
     @DeleteMapping(path = "{studentId}")
-    public void deleteStudent(@PathVariable Long studentId) {
+    public void deleteStudent(
+            @PathVariable("studentId") Long studentId) {
         studentService.deleteStudent(studentId);
     }
 }
